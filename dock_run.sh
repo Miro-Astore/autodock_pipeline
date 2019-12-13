@@ -1,12 +1,12 @@
 dock_run () { 
 source $HOME/.bashrc
-alias prep_rec_vina="/home/miro/md/mgltools_1.5.6/bin/pythonsh  /home/miro/md/mgltools_1.5.6/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_receptor4.py"
-alias prep_lig_vina="/home/miro/md/mgltools_1.5.6/bin/pythonsh /home/miro/md/mgltools_1.5.6/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py"
+prep_rec_vina="/home/miro/md/mgltools_1.5.6/bin/pythonsh  /home/miro/md/mgltools_1.5.6/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_receptor4.py"
+prep_lig_vina="/home/miro/md/mgltools_1.5.6/bin/pythonsh /home/miro/md/mgltools_1.5.6/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py"
 
 mkdir /dev/shm/docking_temp/
 
-prep_rec_vina -r $1
-prep_lig_vina -l $3
+$prep_rec_vina -r $1
+$prep_lig_vina -l $3
 
 coor=$(vmd -dispdev text -startup /home/miro/python_scripts/dummy_vmdrc.tcl $1 -e /home/miro/python_scripts/origin.tcl 2> /dev/null | grep -E  ^-\|^[0-9]\|^{    )  
 coor=$(echo $coor | sed 's/[{}]//g')
