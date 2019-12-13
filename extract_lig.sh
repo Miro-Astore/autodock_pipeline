@@ -1,7 +1,8 @@
 #!/bin/bash
-
-
+#! extracts ligand from output and makes new pdb files. Haven't fixed for flexible chains yet.
 extract_ligs () {
+
+out=$(cat $2 | sed "s/\.pdb//g")
 x=$(echo $1 | sed "s/\.pdbqt//g")
 echo $x
 cut -c-66 $x.pdbqt > $x.pdb
@@ -25,6 +26,6 @@ do
     f2=$(echo $x.$j)
     mv $f2 $f1.pdb
     num=$(echo $f1 | grep -o \.[0-9][0-9][0-9] | grep "s/\.//g" )
-    cat open.pdb $f1.pdb | grep -v '^END$' > open_out_$k.pdb
+    cat $out\.pdb $f1.pdb | grep -v '^END$' > $out\_out_$k.pdb
 done
 }
