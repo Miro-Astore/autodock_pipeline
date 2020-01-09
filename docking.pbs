@@ -1,0 +1,19 @@
+#!/bin/bash
+#PBS -P r16
+#PBS -l storage=scratch/r16
+#PBS -q normal
+#PBS -l ncpus=96
+#PBS -m abe
+#PBS -l walltime=1:00:00
+#PBS -l mem=64GB
+#PBS -l wd
+#PBS -M yearlyboozefest@gmail.com
+
+
+
+source $HOME/.bashrc
+cd $PBS_O_WORKDIR
+module load vmd/1.9.3
+source /scratch/r16/ma2374/docking/autodock_pipeline/dock_run.sh
+
+
