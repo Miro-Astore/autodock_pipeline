@@ -32,5 +32,5 @@ nsub docking.pbs
     fi 
 
 done 
-cd /data/phd/mutation_study_CFTR/
+#cd /data/phd/mutation_study_CFTR/
 #zip -r docking.zip docking

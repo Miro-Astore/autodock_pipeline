@@ -9,7 +9,8 @@ cut -c-66 $x.pdbqt > $x.pdb
 cat $out.pdb |  grep -v '^END$' > $out\_poses.pdb
 
 sed -i -e "s/^ENDBRANCH.*//g" -e "s/^ENDROOT.*//g" $x.pdb
-a=$(cat $x.pdb | grep "ENDMDL"  | wc -l)
+#a=$(cat $x.pdb | grep "ENDMDL"  | wc -l)
+a=5
 b=`expr $a - 2`
 
 csplit -k -s -n 3 -f $x. $x.pdb '/^ENDMDL/+1' '{'$b'}'
