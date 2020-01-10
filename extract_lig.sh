@@ -15,9 +15,14 @@ b=`expr $a - 2`
 csplit -k -s -n 3 -f $x. $x.pdb '/^ENDMDL/+1' '{'$b'}'
 
 b=`expr $a`
+tempvmd=$(echo $VMDNOCUDA)
+tempopt=$(echo $VMDNOOPTIX)
+export VMDNOCUDA=1
+export VMDNOOPTIX=1
 
 for i in $(seq  1 $b | tac );
 do
+	#i need to comment this i'm not sure why it works or what it's doing
     j=$(printf '%03d' "$(( $i - 1 ))")
     k=$(printf '%03d' "$i")
     echo $j
@@ -27,8 +32,19 @@ do
     mv $f2 $f1.pdb
     num=$(echo $f1 | grep -o \.[0-9][0-9][0-9] | grep "s/\.//g" )
 
-    cat res_resname.tcl | sed "s/PDBNAME/$(readlink -f f1.pdb)/g" > /tmp/res_rename.tcl
+	filename=$(readlink -f $f1.pdb)
+
+	echo "mol new $filename" > /tmp/res_rename.tcl 
+	echo 'set sel [atomselect top all]' >> /tmp/res_rename.tcl 
+	echo '$sel set resname LIG' >> /tmp/res_rename.tcl 
+	echo "\$sel writepdb $filename" >> /tmp/res_rename.tcl 
+	echo 'exit' >> /tmp/res_rename.tcl
+
     vmd -dispdev text -e /tmp/res_rename.tcl 
-    cat $f1\.pdb | grep -v '^END$' | grep -v '^ENDMDL' >> $out\_poses.pdb
+	#needs to be j or k for pose numbering
+    cat $f1\.pdb | grep -v '^END$' | grep -v '^ENDMDL' >> $out\_poses_$i.pdb
+	echo "END" >> $out\_poses_$i.pdb
 done
+export VMDNOCUDA=$tempvmd
+export VMDNOOPTIX=$tempopt
 }

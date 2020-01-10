@@ -1,4 +1,5 @@
 #!/bin/bash
+module load vmd/1.9.3
 source dock_run.sh
 source extract_lig.sh
 
