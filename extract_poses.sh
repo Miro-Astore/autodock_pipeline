@@ -13,7 +13,8 @@ for i in $(cat ../list);
 	 echo $type
 	 if [ $type = VX770 ]
 	 then 
-	     recpdb=$(ls | grep -v -i vx770 | grep "pdb$")
+	 #find the pdbqt that is not the drug molecule this will be the protein/receptor structure
+	     recpdb=$(ls | grep -v -i vx770 | grep "pdbqt$" | sed "s/\.pdbqt/.pdb/g")
 	     extract_ligs vx770_out.pdbqt $recpdb
 	     
 	 fi 
@@ -21,7 +22,9 @@ for i in $(cat ../list);
 
 	 if [ $type = GLPG1837 ]
 	 then 
-	     recpdb=$(ls | grep -v -i GLPG1837 | grep "pdb$")
+	 #find the pdbqt that is not the drug molecule this will be the protein/receptor structure
+	     recpdb=$(ls | grep -v -i vx770 | grep "pdbqt$" | sed "s/\.pdbqt/.pdb/g")
+	     recpdb=$(ls | grep -v -i glpg1837 | grep "pdbqt$" | sed "s/\.pdbqt/.pdb/g")
 	     extract_ligs glpg1837_out.pdbqt $recpdb
 	 fi 
 
