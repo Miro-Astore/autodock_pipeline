@@ -8,7 +8,7 @@ num=5
 
 #cd to directory then run the docking find the right pdb file easy little function to check which typ of pdb to use
 cwd=$(pwd)
-mkdir ../results
+mkdir -p ../results
 
 for i in $(cat ../list);
      do 
@@ -29,7 +29,7 @@ for i in $(cat ../list);
 	 echo $lise
 	 echo $file
 	 echo $prefix
-	 mkdir $cwd/../results/$prefix
+	 mkdir -p $cwd/../results/$prefix
 	 cp $list $cwd/../results/$prefix
 
 	# cp $file $cwd/../results/
