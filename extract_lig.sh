@@ -9,8 +9,7 @@ cut -c-66 $x.pdbqt > $x.pdb
 cat $out.pdb |  grep -v '^END$' > $out\_poses.pdb
 
 sed -i -e "s/^ENDBRANCH.*//g" -e "s/^ENDROOT.*//g" $x.pdb
-#a=$(cat $x.pdb | grep "ENDMDL"  | wc -l)
-a=5
+a=$(cat $x.pdb | grep "ENDMDL"  | wc -l)
 b=`expr $a - 2`
 
 csplit -k -s -n 3 -f $x. $x.pdb '/^ENDMDL/+1' '{'$b'}'
@@ -27,6 +26,9 @@ do
     f2=$(echo $x.$j)
     mv $f2 $f1.pdb
     num=$(echo $f1 | grep -o \.[0-9][0-9][0-9] | grep "s/\.//g" )
+
+    cat res_resname.tcl | sed "s/PDBNAME/$(readlink -f f1.pdb)/g" > /tmp/res_rename.tcl
+    vmd -dispdev text -e /tmp/res_rename.tcl 
     cat $f1\.pdb | grep -v '^END$' | grep -v '^ENDMDL' >> $out\_poses.pdb
 done
 }
