@@ -1,6 +1,3 @@
-#!/usr/local/bin/vmd
-# VMD script written by save_state $Revision: 1.47 $
-# VMD version: 1.9.3
 set viewplist {}
 set fixedlist {}
 proc vmdrestoremymaterials {} {
@@ -348,11 +345,6 @@ atomselect macro membplugin_lipid {resname CHL1 SM18 DLPA DLPC DLPE DLPG DLPS DM
 		display dof off
 		display dof_fnumber 64.000000
 		display dof_focaldist 0.700000
-#mol new 200ns_protein_WT_closed_poses_001.pdb type pdb first 0 last -1 step 1 filebonds 1 autobonds 1 waitfor all
-#mol addfile 200ns_protein_WT_closed_poses_002.pdb type pdb first 0 last -1 step 1 filebonds 1 autobonds 1 waitfor all
-#mol addfile 200ns_protein_WT_closed_poses_003.pdb type pdb first 0 last -1 step 1 filebonds 1 autobonds 1 waitfor all
-#mol addfile 200ns_protein_WT_closed_poses_004.pdb type pdb first 0 last -1 step 1 filebonds 1 autobonds 1 waitfor all
-#mol addfile 200ns_protein_WT_closed_poses_005.pdb type pdb first 0 last -1 step 1 filebonds 1 autobonds 1 waitfor all
 		mol delrep 0 top
 		mol representation NewCartoon 0.300000 10.000000 4.100000 0
 		mol color Name
@@ -388,42 +380,7 @@ atomselect macro membplugin_lipid {resname CHL1 SM18 DLPA DLPC DLPE DLPG DLPS DM
 		mol clipplane color  5 0 top {0.5 0.5 0.5 }
 		mol clipplane normal 5 0 top {0.0 0.0 1.0}
 		mol clipplane status 5 0 top {0}
-		mol representation Lines 1.000000
-		mol color Name
-		mol selection {resname LIG}
-		mol material Opaque
-		mol addrep top
-		mol selupdate 1 top 0
-		mol colupdate 1 top 0
-		mol scaleminmax top 1 0.000000 0.000000
-		mol smoothrep top 1 0
-		mol drawframes top 1 {now}
-		mol clipplane center 0 1 top {0.0 0.0 0.0}
-		mol clipplane color  0 1 top {0.5 0.5 0.5 }
-		mol clipplane normal 0 1 top {0.0 0.0 1.0}
-		mol clipplane status 0 1 top {0}
-		mol clipplane center 1 1 top {0.0 0.0 0.0}
-		mol clipplane color  1 1 top {0.5 0.5 0.5 }
-		mol clipplane normal 1 1 top {0.0 0.0 1.0}
-		mol clipplane status 1 1 top {0}
-		mol clipplane center 2 1 top {0.0 0.0 0.0}
-		mol clipplane color  2 1 top {0.5 0.5 0.5 }
-		mol clipplane normal 2 1 top {0.0 0.0 1.0}
-		mol clipplane status 2 1 top {0}
-		mol clipplane center 3 1 top {0.0 0.0 0.0}
-		mol clipplane color  3 1 top {0.5 0.5 0.5 }
-		mol clipplane normal 3 1 top {0.0 0.0 1.0}
-		mol clipplane status 3 1 top {0}
-		mol clipplane center 4 1 top {0.0 0.0 0.0}
-		mol clipplane color  4 1 top {0.5 0.5 0.5 }
-		mol clipplane normal 4 1 top {0.0 0.0 1.0}
-		mol clipplane status 4 1 top {0}
-		mol clipplane center 5 1 top {0.0 0.0 0.0}
-		mol clipplane color  5 1 top {0.5 0.5 0.5 }
-		mol clipplane normal 5 1 top {0.0 0.0 1.0}
-		mol clipplane status 5 1 top {0}
-		mol rename top 200ns_protein_WT_closed_poses_001.pdb
-		set viewpoints([molinfo top]) {{{1 0 0 -9.56833} {0 1 0 11.2638} {0 0 1 7.81979} {0 0 0 1}} {{-0.121254 0.928415 0.35122 0} {0.770998 -0.13477 0.62242 0} {0.625192 0.346259 -0.699461 0} {0 0 0 1}} {{0.0189513 0 0 0} {0 0.0189513 0 0} {0 0 0.0189513 0} {0 0 0 1}} {{1 0 0 0} {0 1 0 0} {0 0 1 0} {0 0 0 1}}}
+		set viewpoints([molinfo top]) {{{1 0 0 -152.735} {0 1 0 -156.048} {0 0 1 -131.851} {0 0 0 1}} {{-0.600173 0.799513 -0.0239182 0} {0.799706 0.600388 0.00230168 0} {0.0162005 -0.0177462 -0.999711 0} {0 0 0 1}} {{0.0113704 0 0 0} {0 0.0113704 0 0} {0 0 0.0113704 0} {0 0 0 1}} {{1 0 0 0} {0 1 0 0} {0 0 1 0} {0 0 0 1}}}
 		lappend viewplist [molinfo top]
 		set topmol [molinfo top]
 # done with molecule 0
@@ -564,10 +521,8 @@ proc vmdrestoremycolors {} {
 			{color Element {Y} ochre}
 			{color Element {Yb} ochre}
 			{color Element {Zr} ochre}
-			{color Resname {LIG} silver}
 			{color Chain {A} blue}
-			{color Chain {X} red}
-			{color Segname {AP1} blue}
+			{color Chain {B} red}
 			{color Segname {} blue}
 			{color Conformation {all} blue}
 			{color Molecule {0} blue}
@@ -612,3 +567,5 @@ proc vmdrestoremycolors {} {
 }
 vmdrestoremycolors
 label textsize 1.0
+
+display resetview
