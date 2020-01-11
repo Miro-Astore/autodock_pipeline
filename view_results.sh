@@ -1,7 +1,8 @@
 #!/bin/bash
+# script for loading results into vmd and getting local contacts
 cd ../results/
 for i in $(ls -d */);
-#for i in $(ls -d */ | head -n 1 );
+#for i in $(ls -d */ | head -n 1 ); #for testing to check if it will fail in the n = 1 case
 do 
 cd $i
 vmd -e ../../autodock_pipeline/viewing_results_state.vmd $( ls -v *pdb)
