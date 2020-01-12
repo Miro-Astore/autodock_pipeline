@@ -1,5 +1,7 @@
 dock_run () { 
+	#remove on non-cluster environment otherwise i guess you have to use spack or something lol good luck. Should probably move this to MDAnalysis too 
 module load vmd/1.9.3
+
 prep_rec_vina="$HOME/mgltools_x86_64Linux2_1.5.6/bin/pythonsh  $HOME/mgltools_x86_64Linux2_1.5.6/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_receptor4.py"
 
 prep_lig_vina="$HOME/mgltools_x86_64Linux2_1.5.6/bin/pythonsh $HOME/mgltools_x86_64Linux2_1.5.6/MGLToolsPckgs/AutoDockTools/Utilities24/prepare_ligand4.py"
@@ -34,6 +36,8 @@ else
     prep_rec_vina -r /dev/shm/docking_temp/flex_sc.pdb  
     rm /dev/shm/docking_temp/flex_sc.tcl
     rm /dev/shm/docking_temp/flex_sc.txt
+
+	#these sizes are specific to cftr. Need to encorporate system size detection into mdanalysis or vmd (deprecate)
 
     vina --exhaustiveness 1000 --num_modes 100 --receptor $rec\.pdbqt --flex flex_sc.pdbqt --ligand $lig\.pdbqt --center_x $x --center_y $y --center_z $z --size_x 85 --size_y 85 --size_z 150 
     fi 
