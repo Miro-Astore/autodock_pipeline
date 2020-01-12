@@ -11,5 +11,3 @@ TODO. Switch from vmd based pdb manipulation and building to MDAnalysis.
 TODO. Write proper documentation for workflow
 TODO. Write functionality to go back to closed results vmd tab somehow. tricky.
 
-
-testing
