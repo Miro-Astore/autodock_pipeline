@@ -26,7 +26,6 @@ for i in $(cat ../list);
 	 prefix=$(pwd | awk -F/ '{print  $(NF-3),"_",$(NF-2),"_",$NF }' | sed "s/\s//g" )
 	 #prefix=$(pwd | awk -F/ '{print  $(NF-2),"_",$NF }' | sed "s/\s//g" )
 	 list=$(ls -v *pdb | grep $file\_poses_  | head -n $num)
-	 echo $lise
 	 echo $file
 	 echo $prefix
 	 mkdir -p $cwd/../results/$prefix

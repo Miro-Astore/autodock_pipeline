@@ -388,7 +388,7 @@ atomselect macro membplugin_lipid {resname CHL1 SM18 DLPA DLPC DLPE DLPG DLPS DM
 		mol clipplane color  5 0 top {0.5 0.5 0.5 }
 		mol clipplane normal 5 0 top {0.0 0.0 1.0}
 		mol clipplane status 5 0 top {0}
-		mol representation Lines 1.000000
+		mol representation Licorice 0.3 12.000000 12
 		mol color Name
 		mol selection {resname LIG}
 		mol material Opaque
@@ -422,14 +422,13 @@ atomselect macro membplugin_lipid {resname CHL1 SM18 DLPA DLPC DLPE DLPG DLPS DM
 		mol clipplane color  5 1 top {0.5 0.5 0.5 }
 		mol clipplane normal 5 1 top {0.0 0.0 1.0}
 		mol clipplane status 5 1 top {0}
-		mol rename top 200ns_protein_WT_closed_poses_001.pdb
-		set viewpoints([molinfo top]) {{{1 0 0 -9.56833} {0 1 0 11.2638} {0 0 1 7.81979} {0 0 0 1}} {{-0.121254 0.928415 0.35122 0} {0.770998 -0.13477 0.62242 0} {0.625192 0.346259 -0.699461 0} {0 0 0 1}} {{0.0189513 0 0 0} {0 0.0189513 0 0} {0 0 0.0189513 0} {0 0 0 1}} {{1 0 0 0} {0 1 0 0} {0 0 1 0} {0 0 0 1}}}
+		#set viewpoints([molinfo top]) {{{1 0 0 -9.56833} {0 1 0 11.2638} {0 0 1 7.81979} {0 0 0 1}} {{-0.121254 0.928415 0.35122 0} {0.770998 -0.13477 0.62242 0} {0.625192 0.346259 -0.699461 0} {0 0 0 1}} {{0.0189513 0 0 0} {0 0.0189513 0 0} {0 0 0.0189513 0} {0 0 0 1}} {{1 0 0 0} {0 1 0 0} {0 0 1 0} {0 0 0 1}}}
 		lappend viewplist [molinfo top]
 		set topmol [molinfo top]
 # done with molecule 0
-		foreach v $viewplist {
-			molinfo $v set {center_matrix rotate_matrix scale_matrix global_matrix} $viewpoints($v)
-		}
+#		foreach v $viewplist {
+#			molinfo $v set {center_matrix rotate_matrix scale_matrix global_matrix} $viewpoints($v)
+#		}
 foreach v $fixedlist {
 	molinfo $v set fixed 1
 }
