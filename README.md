@@ -1,4 +1,4 @@
-creating a semi automated pipeline for docking drugs to the CFTR protein \\
+creating a semi automated pipeline for docking drugs a library of protein structures \\
 
 usage  dock_run rec.pdb "cent text" lig.pdb "flex_text"
 
