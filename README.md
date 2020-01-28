@@ -10,5 +10,4 @@ TODO. More flexibility in what autodock is told to do. Also add detection of pro
 TODO. Switch from vmd based pdb manipulation and building to MDAnalysis.
 TODO. Write proper documentation for workflow
 TODO. Write functionality to go back to closed results vmd tab somehow. tricky.
-TODO. rework submission workflow. Make a file for a list of receptor structures and a list of drugs and construct the directories for each of them. if you don't want any make a file called exceptions.txt for pairs that we don't want. 
-TODO. Add functionality for detection of existing pdbqt file. If it exists don't make a new one with the prep scripts. However, make an option to overide this. 
+

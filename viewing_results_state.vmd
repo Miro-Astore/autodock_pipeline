@@ -611,4 +611,3 @@ proc vmdrestoremycolors {} {
 }
 vmdrestoremycolors
 label textsize 1.0
-animate goto frame 0 

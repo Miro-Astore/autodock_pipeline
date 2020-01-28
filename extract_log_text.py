@@ -7,7 +7,7 @@ import numpy as np
 dir_list = np.loadtxt('list',dtype=str)
 writing_or_reading=False
 dir_pos=0
-f=open("../log.log",'r' )
+f=open("/data/phd/mutation_study_CFTR/docking/log.log",'r' )
 line=f.readline()
 #for loop through log.log and when you get to a new ^Writing output go to next file in the list 
 os.chdir(dir_list[dir_pos])
