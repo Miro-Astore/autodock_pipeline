@@ -5,6 +5,7 @@ for i in $(ls -d ../output/*);
 #for i in $(ls -d */ | head -n 1 ); #for testing to check if it will fail in the n = 1 case
 do 
 cd $i
+vmd -e ../../autodock_pipeline/viewing_results_state.vmd $( ls -v *pdb)
 temp_vmdcuda=$VMDNOCUDA
 temp_vmdoptix=$VMDNOOPTIX
 
@@ -22,5 +23,6 @@ export VMDNOCUDA=$temp_vmdcuda
 export VMDNOOPTIX=$temp_vmdoptix
 echo " $rec_name-$lig_name $(cat /tmp/cat_results2.txt) " 
 vmd -e ../../autodock_pipeline/viewing_results_state.vmd $( ls -v $recname\_poses_[0-9][0-9][0-9]*)
+
 cd ../
 done

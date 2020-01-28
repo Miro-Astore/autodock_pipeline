@@ -15,3 +15,4 @@ module load vmd/1.9.3
 source /scratch/r16/ma2374/docking/autodock_pipeline/dock_run.sh
 
 dock_run REC.pdbqt 'all' LIG.pdbqt 2>&1 | tee docking.log
+
