@@ -6,7 +6,7 @@ for i in $(cat ../list);
 do 
 cd $i
 
-#cp /scratch/r16/ma2374/docking/autodock_pipeline/docking.pbs . 
+cp /scratch/r16/ma2374/docking/autodock_pipeline/docking.pbs . 
 #ls | grep pdbqt
 nsub docking.pbs
 done

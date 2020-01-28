@@ -16,4 +16,4 @@ cd $PBS_O_WORKDIR
 module load vmd/1.9.3
 source /scratch/r16/ma2374/docking/autodock_pipeline/dock_run.sh
 
-dock_run REC.pdb 'all' LIG.pdb
+
