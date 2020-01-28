@@ -1,36 +1,41 @@
 #!/bin/bash
-source /data/phd/mutation_study_CFTR/docking/autodock_pipeline/dock_run.sh
+#source /data/phd/mutation_study_CFTR/docking/autodock_pipeline/dock_run.sh
 source /home/562/ma2374/.bashrc
 
-#cd to directory then run the docking find the writepdb file easy little function to check which typ of pdb to use
+#do nested forloop over drugs and receptor directories and create pdbqt files for them. 
+#then copy in new pdbs and pdbqts and the run configuration for that particular system and submit it 
+#to the pbs queue
 
-for i in $(cat list);
-    do 
-	cd $i
-	echo $i
-	type=$(echo $i | awk -F/ '{print $NF}')
-	echo $type
-    if [ $type = VX770 ]
-	then 
-	recpdb=$(ls | grep -v -i vx770 | grep "pdb$")
-	echo $recpdb
-	cp /scratch/r16/ma2374/docking/docking.pbs . 
-	echo "dock_run $recpdb 'all' vx770.pdb" >> docking.pbs
-	nsub docking.pbs
-    fi 
+mkdir -p ../output
 
+source prep_rec.sh
+source prep_lig.sh
 
-    if [ $type = GLPG1837 ]
-    then 
-	recpdb=$(ls | grep -v -i GLPG1837 | grep "pdb$")
-	echo $recpdb
+cwd=$(pwd)
+for rec in $(ls ../receptors/*pdb);
+do 
+for lig in $(ls ../ligands/*pdb);
+do 
+#remember good sed delimeter when using directory paths in sed. conflicts with / delimeter
+rec_name=$(echo $rec | sed "s^\.pdb^^g" | awk -F/ '{print $NF}') 
+lig_name=$(echo $lig | sed "s^\.pdb^^g" | awk -F/ '{print $NF}') 
 
-	cp /scratch/r16/ma2374/docking/docking.pbs .
-	echo "dock_run $recpdb 'all' glpg1837.pdb | tee docking.log" >> docking.pbs
+mkdir -p ../output/$rec_name-$lig_name
+cp ../receptors/$rec_name.pdb  ../output/$rec_name-$lig_name/ 
+cp ../ligands/$lig_name.pdb  ../output/$rec_name-$lig_name/ 
+cp docking.pbs ../output/$rec_name-$lig_name
+
+cd ../output/$rec_name-$lig_name/
+echo $rec_name
+echo $lig_name
+prep_rec $rec_name.pdb
+prep_lig $lig_name.pdb
+sed -i "s/LIG/$lig_name/g" docking.pbs
+sed -i "s/REC/$rec_name/g" docking.pbs
+
 nsub docking.pbs
 
-    fi 
-
+cd $cwd
 done 
-#cd /data/phd/mutation_study_CFTR/
-#zip -r docking.zip docking
+done 
+
