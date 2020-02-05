@@ -24,6 +24,7 @@ mkdir -p ../output/$rec_name-$lig_name
 cp ../receptors/$rec_name.pdb  ../output/$rec_name-$lig_name/ 
 cp ../ligands/$lig_name.pdb  ../output/$rec_name-$lig_name/ 
 cp docking.pbs ../output/$rec_name-$lig_name
+sed -i "s^ROOTDIR^$(pwd)^g" ../output/$rec_name-$lig_name/docking.pbs
 
 cd ../output/$rec_name-$lig_name/
 echo $rec_name

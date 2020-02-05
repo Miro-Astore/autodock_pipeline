@@ -1,7 +1,11 @@
 dock_run () { 
 	#remove on non-cluster environment otherwise i guess you have to use spack or something lol good luck. Should probably move this to MDAnalysis too 
-	#TODO make this more mobile and modular. make the dummy_vmdrc.tcl option something sensible rather than an absolute path
+	#TODO BASH_SOURCE work around for portability fails in symlinks. fix
+
 module load vmd/1.9.3
+
+dirname=$(dirname $BASH_SOURCE)
+
 
 ###preperation funcatinality now taken care of by separate script
 
@@ -11,7 +15,7 @@ module load vmd/1.9.3
 #$prep_lig_vina -l $3
 
 #make the center and length detections of the box dynamic in the same script. just write to separate files.
-vmd -dispdev text -startup /scratch/r16/ma2374/docking/autodock_pipeline/dummy_vmdrc.tcl $1 -e /scratch/r16/ma2374/docking/autodock_pipeline/dimensions.tcl
+vmd -dispdev text -startup $dirname/dummy_vmdrc.tcl $1 -e $dirname/dimensions.tcl
 cat /tmp/center_output.txt
 cat /tmp/minmax_output.txt
 coor=$(cat /dev/shm/center_output.txt)
