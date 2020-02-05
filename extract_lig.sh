@@ -43,6 +43,8 @@ extract_ligs () {
 
 			vmd -dispdev text -e /tmp/res_rename.tcl 
 #needs to be j or k for pose numbering
+#don't mess with this too much because it will make vmd confused if you put and END in the wrong place
+#to speed up performance lets make a more intelligent vmd script
 			cat $out.pdb | grep -v '^END' > $out\_poses_$k.pdb
 			cat $f1\.pdb | grep -v '^END$' | grep -v '^ENDMDL' | grep -v '^CRYS' >> $out\_poses_$k.pdb
 			echo "END" >> $out\_poses_$k.pdb

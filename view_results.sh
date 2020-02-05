@@ -1,8 +1,8 @@
 #!/bin/bash
 # script for loading results into vmd and getting local contacts
-cd ../results/
-#for i in $(ls -d ../output/*);
-for i in $(ls -d ../output/* | head -n 1 ); #for testing to check if it will fail in the n = 1 case
+#cd ../results/
+for i in $(ls -d ../output/*);
+#for i in $(ls -d ../output/* | head -n 1 ); #for testing to check if it will fail in the n = 1 case
 do 
 cd $i
 #not sure why this is here probably need to delete 
@@ -24,7 +24,7 @@ readlink -f $(ls -v *poses_[0-9][0-9][0-9]* | head -n 1 ) >> /tmp/cat_results2.t
 export VMDNOCUDA=$temp_vmdcuda
 export VMDNOOPTIX=$temp_vmdoptix
 echo -e " $rec_name-$lig_name \n $(cat /tmp/cat_results2.txt) " 
-#vmd -e ../../autodock_pipeline/viewing_results_state.vmd $( ls -v $recname\_poses_[0-9][0-9][0-9]*)
+vmd -e ../../autodock_pipeline/viewing_results_state.vmd $( ls -v *poses_[0-9][0-9][0-9]*)
 
 cd ../
 done

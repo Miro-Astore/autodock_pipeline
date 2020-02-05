@@ -20,9 +20,6 @@ for i in $(ls -d ../output/*);
  do 
 	 cd $i
 	 echo $i
-	 #uses default file structure of receptor_file_name-drug_name to differentiate the name of the recptor and the drug, don't use drug names with - in them it will get confused .
-	 drug_name=$(echo $i | awk -F/ '{print $NF}' | awk -F- '{print $NF}')
-	 rec_name=$(echo $i | awk -F/ '{print $NF}' | awk -F- '{print $1}')
-	 extract_ligs $drug_name\_out.pdbqt $rec_name.pdb
+	 rm *poses*[0-9]*.pdb
 	 cd $cwd
  done 
