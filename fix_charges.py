@@ -29,6 +29,16 @@ for line in lines:
         line=(''.join(line))
         o.write(line)
 
+
+    elif (res.upper()=='ZN' and begin != 'TER'):
+        charge=line[69:76]
+        charge="  2.00"
+        charge=list(charge)
+        line=list(line)
+        line[69:75]=charge
+        line=(''.join(line))
+        o.write(line)
+
     else:
         o.write(line)
 
